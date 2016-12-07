@@ -73,17 +73,7 @@ L.map('map', {
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
     function drawMap(sta, areas, outlinesData) {
-        stations = L.geoJson(sta, {
-            pointToLayer: function (feature, layer) {
-                return L.circleMarker(layer, {
-                    color: '#14AAC8'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                    , radius: calcRadius(feature.properties.lbs_t_2015)
-                });
-            }
-        }).addTo(map);
+
         //
         /*if (layer.feature.properties['pct_bin_' + currentYear] == 1) {
                 layer.setStyle({
@@ -113,6 +103,66 @@ L.map('map', {
             }
         }).addTo(map).bringToBack();
 
+        stations = L.geoJson(sta, {
+            pointToLayer: function (feature, layer) {
+                return L.circleMarker(layer, {
+                    color: '#14AAC8'
+                    , opacity: 1
+                    , weight: 1
+                    , fillOpacity: 0
+                    , radius: calcRadius(feature.properties.lbs_t_2015)
+                });
+            },
+            onEachFeature: function(feature, layer) {
+
+                layer.on('mouseover', function(e) {
+
+                    layer.setStyle({
+                        weight: 1
+                        , color: '#f5f5f5'
+                        , fillColor: '#f5f5f5'
+                        , fillOpacity: .3
+                    });
+
+
+                    var targetIphcArea = layer.feature.properties.iphc_area;
+
+                    regions.eachLayer(function(regionLayer) {
+                      if(targetIphcArea == regionLayer.feature.properties.REG_AREA){
+                        infoWindow(regionLayer.feature.properties);
+                        regionLayer.setStyle({
+                            fillOpacity: .6
+                        })
+                      }
+                    })
+
+                    $('#info').show();
+
+
+                });
+
+
+                layer.on('mouseout', function(e) {
+
+                    layer.setStyle({
+                        color: '#14AAC8'
+                        , opacity: 1
+                        , weight: 1
+                        , fillOpacity: 0
+                    });
+
+                    regions.setStyle({
+                        fillOpacity: 0
+                    })
+
+                    $('#info').hide();
+
+                });
+
+
+            }
+        }).addTo(map);
+
         outlines = L.geoJson(outlinesData, {
             style: function (feature) {
                 return {
@@ -126,60 +176,8 @@ L.map('map', {
             }
         }).addTo(map).bringToFront();
 
-        //circle marker mouseover/mouseout
-        stations.on('mouseover', function (e) {
-            var props = e.layer.feature.properties;
-            stations.eachLayer(function (layer) {
-                if (props.station == layer.feature.properties.station) {
-                    layer.setStyle({
-                        weight: 1
-                        , color: '#f5f5f5'
-                        , fillColor: '#f5f5f5'
-                        , fillOpacity: .3
-                    });
-                }
-            });
-        });
-        //
-        stations.on('mouseout', function (layer) {
-            stations.eachLayer(function (layer) {
-                layer.setStyle({
-                    color: '#14AAC8'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                });
-            });
-        });
-        //
-        // regions mouseover/mouseout
-        regions.on('hover', function (e) {
-            var props = e.layer.feature.properties;
-            regions.eachLayer(function (layer) {
-                if (props.REG_AREA == layer.feature.properties.REG_AREA) {
-                    layer.setStyle({
-                        color: '#f5f5f5'
-                        , weight: 0
-                        , opacity: 1
-                        , fillColor: '#f5f5f5'
-                    });
-                }
-            });
-        });
-        regions.on('mouseout', function (layer) {
-            regions.eachLayer(function (layer) {
-                layer.setStyle({
-                    color: '#f5f5f5'
-                    , weight: 0
-                    , fillOpacity: 0
-                    , fillColor: '#f5f5f5'
-                });
-            });
-        });
-        //
         sequenceUI();
         updateSymbols();
-        infoWindow();
     }
     //
 
@@ -215,27 +213,15 @@ L.map('map', {
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // infowindow
-    function infoWindow() {
-        var info = $('#info');
-        regions.on('mouseover', function (e) {
-            info.show();
-            var props = e.layer.feature.properties;
-            $('#info span').text(props.REG_AREA);
-            $(".info_year span").text(currentYear);
-            $(".info_T_CNT span").text(props['TCNT_' + String(currentYear)].toLocaleString());
-            $(".info_T_LBS span").text(props['TLBS_' + String(currentYear)].toLocaleString());
-            $(".info_PCT_T span").text(props['PTO32_' + String(currentYear)].toLocaleString());
-            $(".info_T_LBS_O span").text(props['LO32_' + String(currentYear)].toLocaleString());
-            e.layer.setStyle({
-                fillOpacity: .3
-            });
-        });
-        regions.on('mouseout', function (e) {
-            info.hide();
-            e.layer.setStyle({
-                fillOpacity: 0
-            });
-        });
+    function infoWindow(props) {
+
+        $('#info span').text(props.REG_AREA);
+        $(".info_year span").text(currentYear);
+        $(".info_T_CNT span").text(props['TCNT_' + String(currentYear)].toLocaleString());
+        $(".info_T_LBS span").text(props['TLBS_' + String(currentYear)].toLocaleString());
+        $(".info_PCT_T span").text(props['PTO32_' + String(currentYear)].toLocaleString());
+        $(".info_T_LBS_O span").text(props['LO32_' + String(currentYear)].toLocaleString());
+
     };
 })
 ();
