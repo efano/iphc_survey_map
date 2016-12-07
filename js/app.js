@@ -27,7 +27,14 @@
     // load stations and regions
     omnivore.csv('data/iphc_stations.csv').on('ready', function (e) {
         $.getJSON('data/iphc_regions.json', function (data) {
-            drawMap(e.target.toGeoJSON(), data)
+
+            // load  outlines
+            $.getJSON('data/iphc_outline.json', function (outlineData) {
+
+                drawMap(e.target.toGeoJSON(), data, outlineData)
+
+            });
+
         });
     }).on('error', function (e) {
         console.log(e.error[0].message);
@@ -43,29 +50,29 @@ L.map('map', {
     }
 });*/
     //
-    var searchControl = new L.Control.Search({
-        layer: stations
-        , propertyName: 'station'
-        , circleLocation: false
-    });
-    searchControl.on('search_locationfound', function (e) {
-        e.layer.setStyle({
-            fillColor: 'white'
-            , color: 'white'
-            , fillOpacity: 0.5
-        });
-        //map.fitBounds(e.layer.getBounds());
-        if (e.layer._popup) e.layer.openPopup();
-    }).on('search_collapsed', function (e) {
-        stations.eachLayer(function (layer) {
-            stations.resetStyle(layer);
-        });
-    });
-    map.addControl(searchControl); //inizialize search control
+    // var searchControl = new L.Control.Search({
+    //     layer: stations
+    //     , propertyName: 'station'
+    //     , circleLocation: false
+    // });
+    // searchControl.on('search_locationfound', function (e) {
+    //     e.layer.setStyle({
+    //         fillColor: 'white'
+    //         , color: 'white'
+    //         , fillOpacity: 0.5
+    //     });
+    //     //map.fitBounds(e.layer.getBounds());
+    //     if (e.layer._popup) e.layer.openPopup();
+    // }).on('search_collapsed', function (e) {
+    //     stations.eachLayer(function (layer) {
+    //         stations.resetStyle(layer);
+    //     });
+    // });
+    // map.addControl(searchControl); //inizialize search control
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
-    function drawMap(sta, areas) {
+    function drawMap(sta, areas, outlinesData) {
         stations = L.geoJson(sta, {
             pointToLayer: function (feature, layer) {
                 return L.circleMarker(layer, {
@@ -105,7 +112,20 @@ L.map('map', {
                 };
             }
         }).addTo(map).bringToBack();
-        //
+
+        outlines = L.geoJson(outlinesData, {
+            style: function (feature) {
+                return {
+                    weight: 0
+                    , color: '#f5f5f5'
+                    , opacity: .8
+                    , weight: 2
+                    , dashArray: '3,4'
+                    , lineJoin: 'round'
+                };
+            }
+        }).addTo(map).bringToFront();
+
         //circle marker mouseover/mouseout
         stations.on('mouseover', function (e) {
             var props = e.layer.feature.properties;
@@ -162,23 +182,7 @@ L.map('map', {
         infoWindow();
     }
     //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // load and draw outlines
-    $.getJSON('data/iphc_outline.json', function (data) {
-        regions = L.geoJson(data, {
-            style: function (feature) {
-                return {
-                    weight: 0
-                    , color: '#f5f5f5'
-                    , opacity: .8
-                    , weight: 2
-                    , dashArray: '3,4'
-                    , lineJoin: 'round'
-                };
-            }
-        }).addTo(map).bringToFront();
-    });
-    //
+
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // resizes symbols
     function updateSymbols() {
