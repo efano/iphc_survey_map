@@ -33,6 +33,29 @@
         console.log(e.error[0].message);
     });
     //
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // search box
+    var searchControl = new L.Control.Search({
+        layer: stations
+        , propertyName: 'station'
+        , circleLocation: false
+    });
+    searchControl.on('search_locationfound', function (e) {
+        e.layer.setStyle({
+            fillColor: 'white'
+            , color: 'white'
+            , fillOpacity: 0.5
+        });
+        //map.fitBounds(e.layer.getBounds());
+        if (e.layer._popup) e.layer.openPopup();
+    }).on('search_collapsed', function (e) {
+        stations.eachLayer(function (layer) {
+            stations.resetStyle(layer);
+        });
+    });
+    map.addControl(searchControl); //inizialize search control
+    //
+    //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
     function drawMap(sta, areas) {
@@ -43,10 +66,27 @@
                     , opacity: 1
                     , weight: 1
                     , fillOpacity: 0
-                    , radius: calcRadius(feature.properties.lbs_t_1998)
+                    , radius: calcRadius(feature.properties.lbs_t_2015)
                 });
             }
         }).addTo(map);
+        //
+        /*if (layer.feature.properties['pct_bin_' + currentYear] == 1) {
+                layer.setStyle({
+                    color: '#C6C6C5'
+                    , opacity: 1
+                    , weight: 1
+                    , fillOpacity: 0
+                });
+            }
+            else if (layer.feature.propertiess['pct_bin_' + currentYear] == 2) {
+                layer.setStyle({
+                    color: '#f03719'
+                    , opacity: 1
+                    , weight: 1
+                    , fillOpacity: 0
+                });
+            }*/
         //
         regions = L.geoJson(areas, {
             style: function (feature) {
@@ -143,23 +183,6 @@
                 sticky: true
                 , className: 'mTooltip'
             });
-            //
-            /*if (props['pct_bin_' + currentYear] == 1) {
-                layer.setStyle({
-                    color: '#C6C6C5'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                });
-            }
-            else if (props['pct_bin_' + currentYear] == 2) {
-                layer.setStyle({
-                    color: '#f03719'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                });
-            }*/
         });
     }
     //
@@ -203,31 +226,5 @@
             });
         });
     };
-    //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // search box
-    var searchControl = new L.Control.Search({
-        layer: stations
-        , propertyName: 'station'
-        , circleLocation: false
-        , moveToLocation: function (latlng, title, map) {
-            //map.fitBounds( latlng.layer.getBounds() );
-            var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-            map.setView(latlng, zoom); // access the zoom
-        }
-    });
-    searchControl.on('search:locationfound', function (e) {
-        e.layer.setStyle({
-            fillColor: '#3f0'
-            , color: '#0f0'
-        });
-        if (e.layer._popup) e.layer.openPopup();
-    }).on('search:collapsed', function (e) {
-        featuresLayer.eachLayer(function (layer) { //restore feature color
-            featuresLayer.resetStyle(layer);
-        });
-    });
-    map.addControl(searchControl); //inizialize search control
-    //
 })
 ();
