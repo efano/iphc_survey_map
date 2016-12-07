@@ -35,6 +35,14 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // search box
+    /*var searchLayer = L.geoJson().addTo(map);
+//... adding data in searchLayer ...
+L.map('map', {
+    searchControl: {
+        layer: searchLayer
+    }
+});*/
+    //
     var searchControl = new L.Control.Search({
         layer: stations
         , propertyName: 'station'
@@ -54,7 +62,6 @@
         });
     });
     map.addControl(searchControl); //inizialize search control
-    //
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
