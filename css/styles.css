@@ -54,7 +54,7 @@ h1 {
     background: #0A2244;
     border-top: 1px solid;
     border-top-color: black;
-    opacity: .90;
+    opacity: .95;
     border-radius: 0px 0px 5px 0px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
@@ -85,9 +85,9 @@ h1 {
 
 .sideText_p_legend {
     float: left;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: #f5f5f5;
+    color: #fFF;
     padding: 0px 15px 0px 12px;
     margin: 15px 15px 4px 12px;
 }
@@ -95,7 +95,7 @@ h1 {
 .sideText_final_text {
     position: absolute;
     font-size: 10px;
-    color: #f5f5f5;
+    color: #fFF;
     padding: 0px 15px 0px 12px;
     margin: 15px 15px 4px 12px;
     bottom: 15px;
@@ -130,7 +130,7 @@ a {
     left: 15px;
     width: 270px;
     padding: 4px 15px 8px 8px;
-    color: #f5f5f5;
+    color: #fFF;
 }
 
 .slider {
@@ -184,12 +184,13 @@ a {
 #info p {
     margin: 3px 0 4px;
     font-size: 14px;
-    color: #f5f5f5;
+    color: #fFF;
 }
 
 #info h3 {
     margin: 3px 0 4px;
     padding-bottom: 5px;
     font-size: 18px;
-    color: #f5f5f5;
+    font-weight: bold;
+    color: #fFF;
 }

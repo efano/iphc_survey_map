@@ -3,8 +3,8 @@
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // instantiate the map
     var map = L.map('map', {
-        center: [57.2, -154]
-        , zoom: 7
+        center: [56, -165]
+        , zoom: 6
         , minZoom: 1
         , maxZoom: 9
         , dragging: true
@@ -31,9 +31,10 @@
     var regions;
     var stations;
     var outlines;
+    var boundaries;
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // load stations and regions
+    // load data
     omnivore.csv('data/iphc_stations.csv').on('ready', function (e) {
         $.getJSON('data/iphc_regions.json', function (data) {
             // load  outlines
@@ -43,6 +44,18 @@
         });
     }).on('error', function (e) {
         console.log(e.error[0].message);
+    });
+    //
+    $.getJSON('data/boundaries.json', function (data) {
+        regions = L.geoJson(data, {
+            style: function (feature) {
+                return {
+                    color: '#f5f5f5'
+                    , opacity: .8
+                    , weight: .5
+                };
+            }
+        }).addTo(map);
     });
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,10 +140,9 @@
         outlines = L.geoJson(outlinesData, {
             style: function (feature) {
                 return {
-                    weight: 0
+                    weight: 2
                     , color: '#f5f5f5'
                     , opacity: 1
-                    , weight: 2
                     , dashArray: '3,4'
                     , lineJoin: 'round'
                 };
