@@ -47,7 +47,7 @@
     });
     //
     $.getJSON('data/boundaries.json', function (data) {
-        regions = L.geoJson(data, {
+        boundaries = L.geoJson(data, {
             style: function (feature) {
                 return {
                     color: '#f5f5f5'
@@ -95,7 +95,6 @@
         //
         stations = L.geoJson(sta, {
             pointToLayer: function (feature, layer) {
-
                 return L.circleMarker(layer, {
                     color: '#FF9628'
                     , opacity: 1
@@ -161,11 +160,10 @@
     function updateSymbols() {
         stations.eachLayer(function (layer) {
             var circles = layer.setRadius(calcRadius(layer.feature.properties['lbs_t_' + currentYear]));
-
             layer.setStyle({
-                fillColor: filterColor(layer.feature.properties['pct_bin_' + currentYear])
-            })
-            //tooltip
+                    fillColor: filterColor(layer.feature.properties['pct_bin_' + currentYear])
+                })
+                //tooltip
             layer.bindTooltip("<b>" + "Station ID: " + layer.feature.properties['station'] + "</b><br><hr>" + "Year: " + currentYear + "<br>" + "Number of halibut: " + layer.feature.properties['cnt_t_' + currentYear].toLocaleString() + "<br>" + "Total pounds: " + layer.feature.properties['lbs_t_' + currentYear].toLocaleString() + "<br>" + "Percent halibut over 32in: " + layer.feature.properties['pct_t_o32_' + currentYear] + "%" + "<br>" + "Pounds over 32in: " + layer.feature.properties['lbs_o32in_' + currentYear].toLocaleString(), {
                 sticky: true
                 , className: 'mTooltip'
@@ -175,21 +173,17 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // color cirlces
-
     function filterColor(val) {
-
-        if(val <= 1) {
-          return '#e34a33'
-        } else if(val <= 3) {
-          return '#fdbb84'
-        } else if(val <= 5) {
-          return '#fee8c8';
+        if (val <= 1) {
+            return '#e34a33'
         }
-
-
+        else if (val <= 3) {
+            return '#fdbb84'
+        }
+        else if (val <= 5) {
+            return '#fee8c8';
+        }
     }
-
-
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // radius formula
     function calcRadius(val) {
