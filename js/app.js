@@ -2,8 +2,7 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // instantiate the map
-    L.mapbox.accessToken = 'pk.eyJ1IjoibGlzZmFubyIsImEiOiJjaXNnYzEzMTgwMXUwMnRydGt0eDR1c2JhIn0.fqNRiLiAZk9AbOSao4hAqw';
-    var map = L.mapbox.map('map', 'mapbox.streets-satellite', {
+    var map = L.map('map', {
         center: [57.2, -154]
         , zoom: 7
         , minZoom: 1
@@ -11,6 +10,16 @@
         , dragging: true
         , zoomControl: false
     });
+    var tiles = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+    tiles.addTo(map);
+    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+        , subdomains: 'abcd'
+        , maxZoom: 19
+    });
+    tiles.addTo(map);
     //
     map.addControl(L.control.zoom({
         position: 'topright'
@@ -38,33 +47,6 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // search box
-    /*var searchLayer = L.geoJson().addTo(map);
-//... adding data in searchLayer ...
-L.map('map', {
-    searchControl: {
-        layer: searchLayer
-    }
-});*/
-    //
-    // var searchControl = new L.Control.Search({
-    //     layer: stations
-    //     , propertyName: 'station'
-    //     , circleLocation: false
-    // });
-    // searchControl.on('search_locationfound', function (e) {
-    //     e.layer.setStyle({
-    //         fillColor: 'white'
-    //         , color: 'white'
-    //         , fillOpacity: 0.5
-    //     });
-    //     //map.fitBounds(e.layer.getBounds());
-    //     if (e.layer._popup) e.layer.openPopup();
-    // }).on('search_collapsed', function (e) {
-    //     stations.eachLayer(function (layer) {
-    //         stations.resetStyle(layer);
-    //     });
-    // });
-    // map.addControl(searchControl); //inizialize search control
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
@@ -101,7 +83,7 @@ L.map('map', {
         stations = L.geoJson(sta, {
             pointToLayer: function (feature, layer) {
                 return L.circleMarker(layer, {
-                    color: '#14AAC8'
+                    color: '#FF9628'
                     , opacity: 1
                     , weight: 1
                     , fillOpacity: 0
@@ -114,14 +96,14 @@ L.map('map', {
                         weight: 1
                         , color: '#f5f5f5'
                         , fillColor: '#f5f5f5'
-                        , fillOpacity: .1
+                        , fillOpacity: .6
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
                     regions.eachLayer(function (regionLayer) {
                         if (targetIphcArea == regionLayer.feature.properties.REG_AREA) {
                             infoWindow(regionLayer.feature.properties);
                             regionLayer.setStyle({
-                                fillOpacity: .1
+                                fillOpacity: .2
                             })
                             $('#info').show();
                         }
@@ -129,7 +111,7 @@ L.map('map', {
                 });
                 layer.on('mouseout', function (e) {
                     layer.setStyle({
-                        color: '#14AAC8'
+                        color: '#FF9628'
                         , opacity: 1
                         , weight: 1
                         , fillOpacity: 0
@@ -147,7 +129,7 @@ L.map('map', {
                 return {
                     weight: 0
                     , color: '#f5f5f5'
-                    , opacity: .8
+                    , opacity: 1
                     , weight: 2
                     , dashArray: '3,4'
                     , lineJoin: 'round'
@@ -158,32 +140,6 @@ L.map('map', {
         sequenceUI();
         updateSymbols();
         infoWindow();
-        //
-        /*regions.on('mouseover', function (e) {
-            var props = e.layer.feature.properties;
-            regions.eachLayer(function (layer) {
-                if (props.REG_AREA == layer.feature.properties.REG_AREA) {
-                    layer.setStyle({
-                        weight: 0
-                        , color: '#f5f5f5'
-                        , fillColor: '#f5f5f5'
-                        , fillOpacity: .07
-                    });
-                }
-            })
-            $('#info').show();
-        });
-        regions.on('mouseout', function (layer) {
-            regions.eachLayer(function (layer) {
-                layer.setStyle({
-                    color: '#f5f5f5'
-                    , weight: 0
-                    , fillOpacity: 0
-                    , fillColor: '#f5f5f5'
-                });
-            })
-            $('#info').hide();
-        });*/
     }
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -230,7 +186,7 @@ L.map('map', {
             $(".info_PCT_T span").text(props['PTO32_' + String(currentYear)].toLocaleString());
             $(".info_T_LBS_O span").text(props['LO32_' + String(currentYear)].toLocaleString());
             e.layer.setStyle({
-                fillOpacity: .1
+                fillOpacity: .2
             });
         });
         regions.on('mouseout', function (e) {
