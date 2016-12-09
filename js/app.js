@@ -199,5 +199,8 @@
             });
         });
     };
+    //
+    $(".lengendYear span").text(currentYear);
+    //
 })
 ();

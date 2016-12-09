@@ -26,7 +26,7 @@ h1 {
     z-index: 600;
     left: 0;
     top: 0;
-    bottom: 35%;
+    bottom: 45%;
     width: 340px;
     background: #f5f5f5;
     opacity: .95;
@@ -39,7 +39,7 @@ h1 {
     position: absolute;
     z-index: 610;
     left: 0;
-    top: 65%;
+    top: 55%;
     bottom: 0px;
     width: 340px;
     background: #0A2244;
@@ -83,13 +83,22 @@ h1 {
     margin: 15px 15px 4px 12px;
 }
 
-.sideText_final_text {
+.image {
+    float: left;
+    margin: 15px 0px 10px 15px;
+    width: 100%;
+    height: auto%;
+}
+
+.legendYear {
     position: absolute;
-    font-size: 10px;
-    color: #fFF;
-    padding: 0px 15px 0px 12px;
-    margin: 15px 15px 4px 12px;
-    bottom: 10px;
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 690;
+    color: aqua;
+    bottom: 20px;
+    left: 100px;
 }
 
 .side_hr {
@@ -117,7 +126,7 @@ a {
 #ui-slider {
     position: absolute;
     z-index: 620;
-    bottom: 25px;
+    bottom: 10px;
     left: 15px;
     width: 270px;
     padding: 4px 15px 8px 8px;
