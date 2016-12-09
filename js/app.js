@@ -127,6 +127,7 @@
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // resizes symbols
     function updateSymbols() {
+        $(".year span").text(currentYear);
         stations.eachLayer(function (layer) {
             var circles = layer.setRadius(calcRadius(layer.feature.properties['lbs_t_' + currentYear]));
             layer.setStyle({
@@ -137,6 +138,7 @@
                 sticky: true
                 , className: 'mTooltip'
             });
+            //
         });
     }
     //
@@ -200,7 +202,6 @@
         });
     };
     //
-    $(".lengendYear span").text(currentYear);
     //
 })
 ();

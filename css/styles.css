@@ -78,27 +78,28 @@ h1 {
     float: left;
     font-size: 18px;
     font-weight: bold;
-    color: #fFF;
+    color: #f5f5f5;
     padding: 0px 15px 0px 12px;
     margin: 15px 15px 4px 12px;
 }
 
 .image {
     float: left;
-    margin: 15px 0px 10px 15px;
+    margin: 15px 0px 10px 18px;
     width: 100%;
     height: auto%;
 }
 
-.legendYear {
+.year {
     position: absolute;
     float: left;
-    font-size: 20px;
+    font-size: 26px;
     font-weight: bold;
-    z-index: 690;
-    color: aqua;
-    bottom: 20px;
-    left: 100px;
+    z-index: 700;
+    color: #f5f5f5;
+    text-shadow: -2px -2px 0 #777, 2px -2px 0 #777, -2px 2px 0 #777, 2px 2px 0 #777;
+    left: 360px;
+    top: 15px;
 }
 
 .side_hr {
