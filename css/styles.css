@@ -1,16 +1,7 @@
 /*
 whitesmoke: #f5f5f5
-darker blue: #213169
-blue: #4173CD
-teal: #14AAC8
-yellow: #FABE28
-orange: #FF9628
-dark orange: #F06419
-red: #f03719
+darker blue: #0A2244
 grey: #C6C6C5
-blue-grey: #2C3E50
-blue-grey-dark:#1e2e3f
-
 */
 
 body {
@@ -149,9 +140,9 @@ a {
 
 .mTooltip {
     font-size: 1em;
-    color: #0A2244;
-    border: #f5f5f5;
-    background: #f5f5f5;
+    color: #fff;
+    border: #0A2244;
+    background: #0A2244;
     padding: 5px 10px 3px 10px;
     border-radius: 5px;
     line-height: 150%;
@@ -159,11 +150,11 @@ a {
 }
 
 .leaflet-tooltip-left.mTooltip::before {
-    border-left-color: #f5f5f5;
+    border-left-color: #fff;
 }
 
 .leaflet-tooltip-right.mTooltip::before {
-    border-right-color: #f5f5f5;
+    border-right-color: #fff;
 }
 
 #info {
@@ -173,24 +164,24 @@ a {
     right: 10px;
     max-width: 300px;
     display: none;
-    background: #0A2244;
-    opacity: 0.7;
+    background: #fff;
+    opacity: 0.9;
     border-radius: 5px;
-    padding: 15px 25px;
-    line-height: 130%;
+    padding: 8px 15px;
+    line-height: 120%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 #info p {
     margin: 3px 0 4px;
     font-size: 14px;
-    color: #fFF;
+    color: #0A2244;
 }
 
 #info h3 {
     margin: 3px 0 4px;
-    padding-bottom: 5px;
+    padding-bottom: 2px;
     font-size: 18px;
     font-weight: bold;
-    color: #fFF;
+    color: #0A2244;
 }

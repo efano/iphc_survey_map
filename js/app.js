@@ -3,8 +3,8 @@
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // instantiate the map
     var map = L.map('map', {
-        center: [56, -165]
-        , zoom: 6
+        center: [59.5, -151]
+        , zoom: 7
         , minZoom: 1
         , maxZoom: 9
         , dragging: true
@@ -30,7 +30,6 @@
     var currentYear = 2015;
     var regions;
     var stations;
-    var outlines;
     var boundaries;
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,24 +37,12 @@
     omnivore.csv('data/iphc_stations.csv').on('ready', function (e) {
         $.getJSON('data/iphc_regions.json', function (data) {
             // load  outlines
-            $.getJSON('data/iphc_outline.json', function (outlineData) {
-                drawMap(e.target.toGeoJSON(), data, outlineData)
+            $.getJSON('data/boundaries.json', function (boundaries) {
+                drawMap(e.target.toGeoJSON(), data, boundaries)
             });
         });
     }).on('error', function (e) {
         console.log(e.error[0].message);
-    });
-    //
-    $.getJSON('data/boundaries.json', function (data) {
-        boundaries = L.geoJson(data, {
-            style: function (feature) {
-                return {
-                    color: '#f5f5f5'
-                    , opacity: .8
-                    , weight: .5
-                };
-            }
-        }).addTo(map);
     });
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,32 +50,16 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
-    function drawMap(sta, areas, outlinesData) {
-        //
-        /*if (layer.feature.properties['pct_bin_' + currentYear] == 1) {
-                layer.setStyle({
-                    color: '#C6C6C5'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                });
-            }
-            else if (layer.feature.propertiess['pct_bin_' + currentYear] == 2) {
-                layer.setStyle({
-                    color: '#f03719'
-                    , opacity: 1
-                    , weight: 1
-                    , fillOpacity: 0
-                });
-            }*/
-        //
+    function drawMap(sta, areas, bounds) {
         regions = L.geoJson(areas, {
             style: function (feature) {
                 return {
                     color: '#f5f5f5'
-                    , weight: 0
+                    , weight: .4
                     , fillOpacity: 0
                     , fillColor: '#f5f5f5'
+                    , dashArray: '3,4'
+                    , lineJoin: 'round'
                 };
             }
         }).addTo(map).bringToBack();
@@ -96,11 +67,10 @@
         stations = L.geoJson(sta, {
             pointToLayer: function (feature, layer) {
                 return L.circleMarker(layer, {
-                    color: '#FF9628'
+                    color: filterColor(feature.properties['pct_bin_' + currentYear])
                     , opacity: 1
                     , weight: 1
-                    , fillOpacity: .6
-                    , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
+                    , fillOpacity: 0
                     , radius: calcRadius(feature.properties.lbs_t_2015)
                 });
             }
@@ -108,16 +78,17 @@
                 layer.on('mouseover', function (e) {
                     layer.setStyle({
                         weight: 1
-                        , color: '#f5f5f5'
-                        , fillColor: '#f5f5f5'
-                        , fillOpacity: .6
+                        , color: filterColor(feature.properties['pct_bin_' + currentYear])
+                        , fillColor: '#0A2244'
+                        , fillOpacity: .4
+                        , weight: 3
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
                     regions.eachLayer(function (regionLayer) {
                         if (targetIphcArea == regionLayer.feature.properties.REG_AREA) {
                             infoWindow(regionLayer.feature.properties);
                             regionLayer.setStyle({
-                                fillOpacity: .2
+                                fillOpacity: .1
                             })
                             $('#info').show();
                         }
@@ -125,7 +96,7 @@
                 });
                 layer.on('mouseout', function (e) {
                     layer.setStyle({
-                        color: '#FF9628'
+                        color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , opacity: 1
                         , weight: 1
                         , fillOpacity: 0
@@ -138,14 +109,12 @@
             }
         }).addTo(map);
         //
-        outlines = L.geoJson(outlinesData, {
+        boundaries = L.geoJson(bounds, {
             style: function (feature) {
                 return {
-                    weight: 2
-                    , color: '#f5f5f5'
-                    , opacity: 1
-                    , dashArray: '3,4'
-                    , lineJoin: 'round'
+                    color: '#f5f5f5'
+                    , opacity: .8
+                    , weight: .5
                 };
             }
         }).addTo(map).bringToFront();
@@ -161,9 +130,9 @@
         stations.eachLayer(function (layer) {
             var circles = layer.setRadius(calcRadius(layer.feature.properties['lbs_t_' + currentYear]));
             layer.setStyle({
-                    fillColor: filterColor(layer.feature.properties['pct_bin_' + currentYear])
-                })
-                //tooltip
+                color: filterColor(layer.feature.properties['pct_bin_' + currentYear])
+            });
+            //tooltip
             layer.bindTooltip("<b>" + "Station ID: " + layer.feature.properties['station'] + "</b><br><hr>" + "Year: " + currentYear + "<br>" + "Number of halibut: " + layer.feature.properties['cnt_t_' + currentYear].toLocaleString() + "<br>" + "Total pounds: " + layer.feature.properties['lbs_t_' + currentYear].toLocaleString() + "<br>" + "Percent halibut over 32in: " + layer.feature.properties['pct_t_o32_' + currentYear] + "%" + "<br>" + "Pounds over 32in: " + layer.feature.properties['lbs_o32in_' + currentYear].toLocaleString(), {
                 sticky: true
                 , className: 'mTooltip'
@@ -174,21 +143,27 @@
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // color cirlces
     function filterColor(val) {
-        if (val <= 1) {
-            return '#e34a33'
+        if (val == 1) {
+            return '#C6C6C5'
         }
-        else if (val <= 3) {
-            return '#fdbb84'
+        else if (val == 2) {
+            return '#D92525'
         }
-        else if (val <= 5) {
-            return '#fee8c8';
+        else if (val == 3) {
+            return '#F29F05'
         }
-    }
+        else if (val == 4) {
+            return '#88A61B'
+        }
+        else if (val == 5) {
+            return '#05A8F2'
+        }
+    };
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // radius formula
     function calcRadius(val) {
         var radius = Math.sqrt(val / Math.PI);
-        return radius * .5;
+        return radius * .6;
     }
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -214,7 +189,7 @@
             $(".info_PCT_T span").text(props['PTO32_' + String(currentYear)].toLocaleString());
             $(".info_T_LBS_O span").text(props['LO32_' + String(currentYear)].toLocaleString());
             e.layer.setStyle({
-                fillOpacity: .2
+                fillOpacity: .1
             });
         });
         regions.on('mouseout', function (e) {
