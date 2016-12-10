@@ -44,6 +44,7 @@ h1 {
     z-index: 610;
     bottom: 0;
     height: 45%;
+    min-height: 320px;
     background: #0A2244;
     border-top: 1px solid;
     border-top-color: black;
