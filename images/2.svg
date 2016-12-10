@@ -3,12 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="360px" height="200px" viewBox="0 0 360 200" enable-background="new 0 0 360 200" xml:space="preserve">
-<style>
-     @import url('https://fonts.googleapis.com/css?family=Lato);
-     text { font-family:Lato, sans-serif; }
- </style>
 <symbol  id="Arrow_25" viewBox="-22.859 -13.141 45.718 26.281">
-
 	<polygon fill="none" points="-22.859,-13.141 22.859,-13.141 22.859,13.141 -22.859,13.141 	"/>
 	<g>
 		<polygon fill="#F5F5F5" points="-5.512,2.214 8.487,2.214 8.487,-3.877 22.405,4.15 8.487,12.172 8.487,6.085 -5.512,6.085 		"/>
