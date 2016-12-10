@@ -127,7 +127,7 @@ a {
 #ui-slider {
     position: absolute;
     z-index: 620;
-    bottom: 10px;
+    top: 260px;
     left: 15px;
     width: 275px;
     padding: 4px 15px 8px 8px;
