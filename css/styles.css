@@ -21,13 +21,17 @@ h1 {
     margin: 0;
 }
 
-#side-panel {
+#side-panel,
+#side-panel-legend {
     position: absolute;
-    z-index: 600;
     left: 0;
-    top: 0;
-    bottom: 45%;
     width: 340px;
+}
+
+#side-panel {
+    z-index: 600;
+    top: 0;
+    height: 55%;
     background: #f5f5f5;
     opacity: .95;
     border-radius: 0px 5px 0px 0px;
@@ -37,12 +41,9 @@ h1 {
 }
 
 #side-panel-legend {
-    position: absolute;
     z-index: 610;
-    left: 0;
-    top: 55%;
-    bottom: 0px;
-    width: 340px;
+    bottom: 0;
+    height: 45%;
     background: #0A2244;
     border-top: 1px solid;
     border-top-color: black;
