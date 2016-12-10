@@ -69,7 +69,7 @@
                 return L.circleMarker(layer, {
                     color: filterColor(feature.properties['pct_bin_' + currentYear])
                     , opacity: 1
-                    , weight: 1
+                    , weight: 2
                     , fillOpacity: 0
                     , radius: calcRadius(feature.properties.lbs_t_2015)
                 });
@@ -98,7 +98,7 @@
                     layer.setStyle({
                         color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , opacity: 1
-                        , weight: 1
+                        , weight: 2
                         , fillOpacity: 0
                     });
                     regions.setStyle({
