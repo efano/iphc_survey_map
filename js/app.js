@@ -81,7 +81,7 @@
                         , color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , fillColor: '#0A2244'
                         , fillOpacity: .4
-                        , weight: 3
+                        , weight: 4
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
                     regions.eachLayer(function (regionLayer) {
