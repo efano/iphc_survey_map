@@ -45,9 +45,6 @@
         console.log(e.error[0].message);
     });
     //
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // search box
-    //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // draw symbols for stations and regions
     function drawMap(sta, areas, bounds) {
@@ -201,7 +198,6 @@
             });
         });
     };
-    //
     //
 })
 ();
