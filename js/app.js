@@ -52,7 +52,7 @@
             style: function (feature) {
                 return {
                     color: '#f5f5f5'
-                    , weight: .5
+                    , weight: .3
                     , fillOpacity: 0
                     , fillColor: '#f5f5f5'
                     , dashArray: '3,4'
