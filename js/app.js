@@ -193,7 +193,6 @@
             $(".stats").html(props);
             //
             var tlbs = [props['TLBS_1998'], props['TLBS_1999'], props['TLBS_2000'], props['TLBS_2001'], props['TLBS_2002'], props['TLBS_2003'], props['TLBS_2004'], props['TLBS_2005'], props['TLBS_2006'], props['TLBS_2007'], props['TLBS_2008'], props['TLBS_2009'], props['TLBS_2010'], props['TLBS_2011'], props['TLBS_2012'], props['TLBS_2013'], props['TLBS_2014'], props['TLBS_2015']];
-            console.log(tlbs);
             //
             $('.TLBSspark').sparkline(tlbs, {
                 type: 'bar'
