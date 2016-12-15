@@ -196,9 +196,10 @@
             //
             $('.TLBSspark').sparkline(tlbs, {
                 type: 'bar'
-                , barWidth: 10
+                , barWidth: 9
+                , height: '30'
                 , barColor: '#05A8F2'
-                , nullColor: '#C6C6C5 '
+                , nullColor: '#888 '
             });
         });
         regions.on('mouseout', function (e) {

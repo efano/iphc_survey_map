@@ -175,26 +175,26 @@ a {
     z-index: 700;
     bottom: 30px;
     right: 10px;
-    max-width: 300px;
+    max-width: 280px;
     display: none;
     background: #fff;
-    opacity: 0.9;
+    opacity: 0.85;
     border-radius: 5px;
-    padding: 8px 15px;
-    line-height: 120%;
+    padding: 5px 15px;
+    line-height: 100%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 #info p {
     margin: 3px 0 4px;
-    font-size: 14px;
+    font-size: 13px;
     color: #0A2244;
 }
 
 #info h3 {
     margin: 3px 0 4px;
     padding-bottom: 2px;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     color: #0A2244;
 }
