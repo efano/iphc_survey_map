@@ -184,16 +184,22 @@ a {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
+#info h3 {
+    margin: 3px 0 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #0A2244;
+}
+
 #info p {
     margin: 2px 0 3px;
     font-size: 13px;
     color: #0A2244;
 }
 
-#info h3 {
-    margin: 3px 0 4px;
-    padding-bottom: 2px;
-    font-size: 15px;
-    font-weight: bold;
+#info .info_TT {
+    margin: 2px 0 2px;
+    padding-bottom: 7px;
+    font-size: 13px;
     color: #0A2244;
 }
