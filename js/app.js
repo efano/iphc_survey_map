@@ -5,7 +5,7 @@
     var map = L.map('map', {
         center: [59.5, -151]
         , zoom: 7
-        , minZoom: 1
+        , minZoom: 4
         , maxZoom: 9
         , dragging: true
         , zoomControl: false
@@ -52,7 +52,7 @@
             style: function (feature) {
                 return {
                     color: '#f5f5f5'
-                    , weight: .3
+                    , weight: .5
                     , fillOpacity: 0
                     , fillColor: '#f5f5f5'
                     , dashArray: '3,4'
@@ -162,8 +162,20 @@
     // radius formula
     function calcRadius(val) {
         var radius = Math.sqrt(val / Math.PI);
-        return radius * .6;
+        return radius * .5;
     }
+    //
+    //
+    map.on('zoomend', onZoomend);
+
+    function onZoomend() {
+        if (map.getZoom() <= 5) {
+            map.removeLayer(stations);
+        };
+        if (map.getZoom() > 5) {
+            map.addLayer(stations);
+        };
+    };
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // jquery slider action

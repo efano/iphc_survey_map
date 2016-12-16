@@ -78,6 +78,19 @@ h1 {
     margin: 5px 12px 4px 12px;
 }
 
+.sideText_p_end {
+    float: left;
+    font-size: 14px;
+    color: #0A2244;
+    padding: 0px 12px 10px 12px;
+    margin: 5px 12px 4px 12px;
+}
+
+.portfolioLink {
+    color: #D92525;
+    text-decoration: none;
+}
+
 .sideText_p_legend {
     float: left;
     font-size: 18px;
