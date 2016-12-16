@@ -185,21 +185,21 @@ a {
 }
 
 #info h3 {
-    margin: 3px 0 4px;
+    margin: 3px 0 3px;
     font-size: 16px;
     font-weight: bold;
     color: #0A2244;
 }
 
 #info p {
-    margin: 2px 0 3px;
+    margin: 2px 0 2px;
     font-size: 13px;
     color: #0A2244;
 }
 
 #info .info_TT {
-    margin: 2px 0 2px;
-    padding-bottom: 2px;
+    margin: 1px 0 1px;
+    padding-bottom: 5px;
     font-size: 13px;
     color: #0A2244;
 }
