@@ -105,7 +105,7 @@
     .year {
         position: absolute;
         float: left;
-        font-size: 29px;
+        font-size: 28px;
         font-weight: bold;
         z-index: 700;
         color: #f5f5f5;
@@ -140,7 +140,7 @@
         z-index: 620;
         top: 240px;
         left: 14px;
-        width: 285px;
+        width: 280px;
         padding: 4px 15px 8px 5px;
         color: #fff;
     }
