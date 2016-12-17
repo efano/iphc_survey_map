@@ -49,6 +49,7 @@
         padding: 0px 15px 4px 10px;
         margin: 15px 15px 4px 10px;
         font-size: 28px;
+        font-weight: bold;
         font-family: 'Lato', sans-serif;
     }
     
@@ -68,7 +69,6 @@
         padding: 0px 12px 0px 10px;
         margin: 5px 12px 4px 10px;
         font-family: 'Lato', sans-serif;
-        font-weight: bold;
     }
     
     .sideText_p_end {
@@ -78,7 +78,6 @@
         padding: 0px 12px 10px 10px;
         margin: 5px 12px 4px 10px;
         font-family: 'Lato', sans-serif;
-        font-weight: bold;
     }
     
     .portfolioLink {
@@ -208,7 +207,6 @@
         font-size: 13px;
         color: #0A2244;
         font-family: 'Lato', sans-serif;
-        font-weight: bold;
     }
     
     #info .info_TT {
@@ -217,7 +215,6 @@
         font-size: 13px;
         color: #0A2244;
         font-family: 'Lato', sans-serif;
-        font-weight: bold;
     }
     
     #info .info-hr {
