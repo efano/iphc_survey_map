@@ -106,13 +106,13 @@
     .year {
         position: absolute;
         float: left;
-        font-size: 26px;
+        font-size: 29px;
         font-weight: bold;
         z-index: 700;
         color: #f5f5f5;
         text-shadow: -2px -2px 0 #0A2244, 2px -2px 0 #0A2244, -2px 2px 0 #0A2244, 2px 2px 0 #0A2244;
         left: 360px;
-        top: 15px;
+        top: 16px;
     }
     
     .side_hr {
