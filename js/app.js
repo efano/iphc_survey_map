@@ -54,9 +54,9 @@
                     color: '#f5f5f5'
                     , weight: .5
                     , fillOpacity: 0
+                    , lineJoin: 'round'
                     , fillColor: '#f5f5f5'
                     , dashArray: '3,4'
-                    , lineJoin: 'round'
                 };
             }
         }).addTo(map).bringToBack();
@@ -158,6 +158,7 @@
             return '#05A8F2'
         }
     };
+    //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // radius formula
     function calcRadius(val) {
@@ -165,7 +166,8 @@
         return radius * .5;
     }
     //
-    //
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // hide stations feature when zooming out
     map.on('zoomend', onZoomend);
 
     function onZoomend() {
