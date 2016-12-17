@@ -132,7 +132,7 @@ header {
 a {
     color: #05A8F2;
     text-decoration: none;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 #map {
@@ -167,13 +167,14 @@ a {
 }
 
 .mTooltip {
-    font-size: 1em;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
     color: #fff;
     border: #0A2244;
     background: #0A2244;
     padding: 5px 10px 3px 10px;
     border-radius: 5px;
-    line-height: 150%;
+    line-height: 145%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
@@ -187,11 +188,12 @@ a {
 
 #info {
     position: absolute;
+    display: none;
     z-index: 700;
     bottom: 30px;
     right: 10px;
     max-width: 280px;
-    display: none;
+    line-height: 100%;
     background: #fff;
     opacity: 0.85;
     border-radius: 5px;
@@ -204,12 +206,15 @@ a {
     font-size: 16px;
     font-weight: bold;
     color: #0A2244;
+    font-family: 'Lato', sans-serif;
 }
 
 #info p {
     margin: 2px 0 2px;
     font-size: 13px;
     color: #0A2244;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }
 
 #info .info_TT {
@@ -217,4 +222,6 @@ a {
     padding-bottom: 5px;
     font-size: 13px;
     color: #0A2244;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
 }

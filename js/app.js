@@ -131,7 +131,7 @@
                 color: filterColor(layer.feature.properties['pct_bin_' + currentYear])
             });
             //tooltip
-            layer.bindTooltip("<b>" + "Station ID: " + layer.feature.properties['station'] + "</b><br><hr>" + "Year: " + currentYear + "<br>" + "Number of halibut: " + layer.feature.properties['cnt_t_' + currentYear].toLocaleString() + "<br>" + "Total pounds: " + layer.feature.properties['lbs_t_' + currentYear].toLocaleString() + "<br>" + "Percent halibut over 32in: " + layer.feature.properties['pct_t_o32_' + currentYear] + "%" + "<br>" + "Pounds over 32in: " + layer.feature.properties['lbs_o32in_' + currentYear].toLocaleString(), {
+            layer.bindTooltip("<b>" + "Station ID:&nbsp; " + layer.feature.properties['station'] + "</b><br><hr>" + "Year:&nbsp; " + currentYear + "<br>" + "Number of halibut:&nbsp; " + layer.feature.properties['cnt_t_' + currentYear].toLocaleString() + "<br>" + "Total pounds:&nbsp; " + layer.feature.properties['lbs_t_' + currentYear].toLocaleString() + "<br>" + "Percent halibut over 32in:&nbsp; " + layer.feature.properties['pct_t_o32_' + currentYear] + "%" + "<br>" + "Pounds over 32in:&nbsp; " + layer.feature.properties['lbs_o32in_' + currentYear].toLocaleString(), {
                 sticky: true
                 , className: 'mTooltip'
             });
