@@ -97,7 +97,7 @@
     
     .image {
         float: left;
-        margin: 0px 0px 10px 15px;
+        margin: 0px 0px 10px 18px;
         width: 100%;
         height: auto;
     }
@@ -140,7 +140,7 @@
         z-index: 620;
         top: 240px;
         left: 16px;
-        width: 282px;
+        width: 283px;
         padding: 4px 15px 8px 5px;
         color: #fff;
     }
