@@ -27,10 +27,10 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // global variables
-    var currentYear = 2015;
-    var regions;
-    var stations;
-    var boundaries;
+    var currentYear = 2015,
+        regions,
+        stations,
+        boundaries;
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // load data
