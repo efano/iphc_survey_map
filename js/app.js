@@ -27,10 +27,8 @@
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // global variables
-    var currentYear = 2015,
-        regions,
-        stations,
-        boundaries;
+    var currentYear = 2015
+        , regions, stations, boundaries;
     //
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // load data
@@ -67,6 +65,7 @@
                     color: filterColor(feature.properties['pct_bin_' + currentYear])
                     , opacity: 1
                     , weight: 2
+                    , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
                     , fillOpacity: 0
                     , radius: calcRadius(feature.properties.lbs_t_2015)
                 });
@@ -77,7 +76,7 @@
                         weight: 1
                         , color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , fillColor: '#0A2244'
-                        , fillOpacity: .8
+                        , fillOpacity: .6
                         , weight: 4
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
@@ -96,6 +95,7 @@
                         color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , opacity: 1
                         , weight: 2
+                        , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
                         , fillOpacity: 0
                     });
                     regions.setStyle({
@@ -129,6 +129,7 @@
             var circles = layer.setRadius(calcRadius(layer.feature.properties['lbs_t_' + currentYear]));
             layer.setStyle({
                 color: filterColor(layer.feature.properties['pct_bin_' + currentYear])
+                , fillColor: filterColor(layer.feature.properties['pct_bin_' + currentYear])
             });
             //tooltip
             layer.bindTooltip("<b>" + "Station ID:&nbsp; " + layer.feature.properties['station'] + "</b><br><hr>" + "Year:&nbsp; " + currentYear + "<br>" + "Number of halibut:&nbsp; " + layer.feature.properties['cnt_t_' + currentYear].toLocaleString() + "<br>" + "Total pounds:&nbsp; " + layer.feature.properties['lbs_t_' + currentYear].toLocaleString() + "<br>" + "Percent halibut over 32in:&nbsp; " + layer.feature.properties['pct_t_o32_' + currentYear] + "%" + "<br>" + "Pounds over 32in:&nbsp; " + layer.feature.properties['lbs_o32in_' + currentYear].toLocaleString(), {
@@ -143,16 +144,16 @@
     // color cirlces
     function filterColor(val) {
         if (val == 1) {
-            return '#C6C6C5'
+            return '#C0C1BF'
         }
         else if (val == 2) {
             return '#D92525'
         }
         else if (val == 3) {
-            return '#F29F05'
+            return '#EB9C08'
         }
         else if (val == 4) {
-            return '#88A61B'
+            return '#87A41E'
         }
         else if (val == 5) {
             return '#05A8F2'
