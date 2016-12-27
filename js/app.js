@@ -213,7 +213,7 @@
                 type: 'bar'
                 , barWidth: 9
                 , height: '30'
-                , barColor: '#0057FF'
+                , barColor: '#cb181d'
                 , nullColor: '#888 '
             });
         });

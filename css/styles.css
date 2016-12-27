@@ -120,26 +120,26 @@
     }
     
     a {
-        color: #0057FF;
+        color: #cb181d;
         text-decoration: none;
         font-weight: bold;
     }
     
     a:hover,
     a:focus {
-        color: #0057FF;
+        color: #cb181d;
         text-decoration: underline;
     }
     
     .portfolioLink {
-        color: #cb181d;
+        color: #0057FF;
         text-decoration: none;
         font-weight: bold;
     }
     
     .portfolioLink:hover,
     .portfolioLink:focus {
-        color: #cb181d;
+        color: #0057FF;
         text-decoration: underline;
     }
     
