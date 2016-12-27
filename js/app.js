@@ -66,7 +66,7 @@
                     , opacity: 1
                     , weight: 2
                     , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
-                    , fillOpacity: 0
+                    , fillOpacity: .1
                     , radius: calcRadius(feature.properties.lbs_t_2015)
                 });
             }
@@ -75,8 +75,8 @@
                     layer.setStyle({
                         weight: 1
                         , color: filterColor(feature.properties['pct_bin_' + currentYear])
-                        , fillColor: '#0A2244'
-                        , fillOpacity: .6
+                        , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
+                        , fillOpacity: .3
                         , weight: 4
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
@@ -99,7 +99,7 @@
                         , fillOpacity: 0
                     });
                     regions.setStyle({
-                        fillOpacity: 0
+                        fillOpacity: .1
                     })
                     $('#info').hide();
                 });
@@ -147,16 +147,16 @@
             return '#C0C1BF'
         }
         else if (val == 2) {
-            return '#D92525'
+            return '#cb181d'
         }
         else if (val == 3) {
-            return '#EB9C08'
+            return '#fc9272'
         }
         else if (val == 4) {
-            return '#87A41E'
+            return '#15B6FF'
         }
         else if (val == 5) {
-            return '#05A8F2'
+            return '#0057FF'
         }
     };
     //
@@ -213,7 +213,7 @@
                 type: 'bar'
                 , barWidth: 9
                 , height: '30'
-                , barColor: '#05A8F2'
+                , barColor: '#0057FF'
                 , nullColor: '#888 '
             });
         });
