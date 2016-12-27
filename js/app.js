@@ -76,7 +76,7 @@
                         weight: 1
                         , color: filterColor(feature.properties['pct_bin_' + currentYear])
                         , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
-                        , fillOpacity: .3
+                        , fillOpacity: .5
                         , weight: 4
                     });
                     var targetIphcArea = layer.feature.properties.iphc_area;
@@ -96,10 +96,10 @@
                         , opacity: 1
                         , weight: 2
                         , fillColor: filterColor(feature.properties['pct_bin_' + currentYear])
-                        , fillOpacity: 0
+                        , fillOpacity: .1
                     });
                     regions.setStyle({
-                        fillOpacity: .1
+                        fillOpacity: 0
                     })
                     $('#info').hide();
                 });
