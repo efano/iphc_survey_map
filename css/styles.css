@@ -83,12 +83,6 @@
         font-family: 'Lato', sans-serif;
     }
     
-    .portfolioLink {
-        color: #cb181d;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    
     .sideText_p_legend {
         float: left;
         font-size: 18px;
@@ -129,6 +123,24 @@
         color: #0057FF;
         text-decoration: none;
         font-weight: bold;
+    }
+    
+    a:hover,
+    a:focus {
+        color: #0057FF;
+        text-decoration: underline;
+    }
+    
+    .portfolioLink {
+        color: #cb181d;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .portfolioLink:hover,
+    .portfolioLink:focus {
+        color: #cb181d;
+        text-decoration: underline;
     }
     
     #map {
