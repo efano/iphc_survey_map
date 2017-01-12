@@ -132,14 +132,14 @@
     }
     
     .portfolioLink {
-        color: #0057FF;
+        color: #cb181d;
         text-decoration: none;
         font-weight: bold;
     }
     
     .portfolioLink:hover,
     .portfolioLink:focus {
-        color: #0057FF;
+        color: #cb181d;
         text-decoration: underline;
     }
     
